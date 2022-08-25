@@ -10,11 +10,11 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 let pressedResult:TextResult|undefined;
 
-export default function BarcodeScanner({ route, navigation }) {
+export default function BarcodeScanner({route, navigation}) {
   const mounted = REA.useSharedValue(true);
   const rotated = REA.useSharedValue(false);
   const regionEnabledShared = REA.useSharedValue(false);
-  const continuous = route.params.continuous;
+  const continuous = route?.params.continuous;
   const [hasPermission, setHasPermission] = React.useState(false);
   const [barcodeResults, setBarcodeResults] = React.useState([] as TextResult[]);
   const [buttonText, setButtonText] = React.useState("Pause");
@@ -92,7 +92,7 @@ export default function BarcodeScanner({ route, navigation }) {
   const getViewBox = () => {
     const frameSize = getFrameSize();
     const viewBox = "0 0 "+frameSize[0]+" "+frameSize[1];
-    console.log("viewBox"+viewBox);
+    //console.log("viewBox"+viewBox);
     updateRotated();
     return viewBox;
   }
@@ -151,10 +151,10 @@ export default function BarcodeScanner({ route, navigation }) {
     if (selectedCam){
       for (let index = 0; index < selectedCam.formats.length; index++) {
         const format = selectedCam.formats[index];
-        console.log("h: "+format.videoHeight);
-        console.log("w: "+format.videoWidth);
+        //console.log("h: "+format.videoHeight);
+        //console.log("w: "+format.videoWidth);
         if (format.videoWidth == desiredWidth && format.videoHeight == desiredHeight){
-          console.log("select format: "+format);
+          //console.log("select format: "+format);
           return format;
         }
       };
@@ -164,8 +164,8 @@ export default function BarcodeScanner({ route, navigation }) {
 
   const frameProcessor = useFrameProcessor((frame) => {
     'worklet'
-    console.log("height: "+frame.height);
-    console.log("width: "+frame.width);
+    // console.log("height: "+frame.height);
+    // console.log("width: "+frame.width);
     REA.runOnJS(updateFrameSize)(frame.width, frame.height);
     const config:DBRConfig = {};
     //config.template="{\"ImageParameter\":{\"BarcodeFormatIds\":[\"BF_QR_CODE\"],\"Description\":\"\",\"Name\":\"Settings\"},\"Version\":\"3.0\"}";

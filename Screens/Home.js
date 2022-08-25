@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Switch, Alert, TouchableOpacity, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-export default function Home({route, navigation}) {
+export default function Home({route,navigation}) {
   const [continuousEnabled, setContinuousEnabled] = React.useState(true)
 
   React.useEffect(() => {

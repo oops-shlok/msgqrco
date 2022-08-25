@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SafeAreaView, StyleSheet, Text, BackHandler } from 'react-native';
 
-export default function Info({ route, navigation }) {
+export default function Info({navigation}) {
   const barcode = route.params.barcode;
   React.useEffect(() => {
     const backAction = () => {
